@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:flutter/services.dart';
 import 'package:money_manager/models/amount_model.dart';
 import 'package:money_manager/screens/bottom_navbar.dart';
 import 'package:money_manager/screens/homescreen.dart';
@@ -15,6 +16,9 @@ import 'package:money_manager/screens/splash_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,
+  DeviceOrientation.portraitDown
+  ]);
   await Hive.initFlutter();
   Hive.registerAdapter(ExModelAdapter());
   Hive.registerAdapter(AmountModelAdapter());

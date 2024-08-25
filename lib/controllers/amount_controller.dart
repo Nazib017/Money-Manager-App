@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:hive/hive.dart';
 import 'package:get/get.dart';
 import 'package:money_manager/models/amount_model.dart';
@@ -37,4 +38,29 @@ class AmountController extends GetxController{
     update();
   }
 
-}
+  List<FlSpot> getFlSpotsFromHive() {
+    List<AmountModel> data = AddMoneyBox.values.toList().cast<AmountModel>();
+
+    Map<DateTime, double> dailyTotals = {};
+
+    for (var entry in data) {
+      DateTime date = DateTime(entry.dateTimeAdd.year, entry.dateTimeAdd.month, entry.dateTimeAdd.day);
+      if (dailyTotals.containsKey(date)) {
+        dailyTotals[date] = dailyTotals[date]! + entry.amountToAdd;
+      } else {
+        dailyTotals[date] = entry.amountToAdd;
+      }
+    }
+
+
+    List<FlSpot> spots = dailyTotals.entries.map((e) {
+      double x = e.key.day.toDouble();
+      double y = e.value;
+      return FlSpot(x, y);
+    }).toList();
+
+
+    return spots;
+  }
+  }
+

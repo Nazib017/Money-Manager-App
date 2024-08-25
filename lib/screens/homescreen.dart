@@ -35,14 +35,16 @@ class HomeScreen extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        
         title: Text("Dashboard",style: TextStyle(color: Colors.white,fontSize: 24,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
-        backgroundColor: Colors.blueGrey[400],
+        backgroundColor: Colors.blue[400],
         centerTitle: true,
-
+      
       ),
       backgroundColor: Colors.white,
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+
+        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
           Padding(

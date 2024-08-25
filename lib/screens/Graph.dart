@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:money_manager/controllers/expanse_controller.dart';
+
+import '../controllers/amount_controller.dart';
+import '../models/amount_model.dart';
 
 
 class Graph extends StatelessWidget {
@@ -7,6 +13,10 @@ class Graph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AmountController amountController = Get.put(AmountController());
+    ExController exController = Get.put(ExController());
+    List<FlSpot> spots = amountController.getFlSpotsFromHive();
+    List<FlSpot> Exspots = exController.getExpenseFlSpotsFromHive();
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -34,18 +44,13 @@ class Graph extends StatelessWidget {
                   child: LineChart(
                       LineChartData(
                           minX: 0,
-                          maxX: 1000,
+                          maxX: 35,
                           minY: 0,
                           maxY: 1000,
                           lineBarsData: [
                             LineChartBarData(
                                 color: Colors.red,
-                                spots:[
-                                  FlSpot(30, 50),
-                                  FlSpot(240, 208),
-                                  FlSpot(420, 80),
-                                  FlSpot(800, 720),
-                                ]
+                                spots:Exspots,
                             ),
                           ]
 
@@ -61,19 +66,14 @@ class Graph extends StatelessWidget {
                       LineChartData(
 
                           minX: 0,
-                          maxX: 1000,
+                          maxX: 35,
                           minY: 0,
                           maxY: 1000,
                           lineBarsData: [
                             LineChartBarData(
                                 isCurved: true,
                                 color: Colors.green,
-                                spots:[
-                                  FlSpot(30, 50),
-                                  FlSpot(240, 208),
-                                  FlSpot(420, 80),
-                                  FlSpot(800, 720),
-                                ]
+                                spots:spots,
                             ),
                           ]
 
