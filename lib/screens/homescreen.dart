@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget{
       backgroundColor: Colors.white,
       body: Column(
 
-        //crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
           Padding(
@@ -232,12 +232,12 @@ class HomeScreen extends StatelessWidget{
                             children: [
 
                               ListTile(
-                                leading: Text("Tottal Amount Added :",style: TextStyle(fontSize: 20,),),
+                                leading: Text("Total Amount Added :",style: TextStyle(fontSize: 20,),),
                                 trailing: Text("${AmountController.TotalAddMoney}",style: TextStyle(fontSize: 20,color: Colors.green),),
                               ),
                               Divider(height: 15,color: Colors.black,),
                               ListTile(
-                                leading: Text("Tottal Expense :",style: TextStyle(fontSize: 20,),),
+                                leading: Text("Total Expense :",style: TextStyle(fontSize: 20,),),
                                 trailing: Text("${AmountController.TotalExpense}",style: TextStyle(fontSize: 20,color: Colors.red),),
                               ),
                               Divider(height: 15,color: Colors.grey,)
