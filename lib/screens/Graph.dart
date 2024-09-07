@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
 import 'package:money_manager/controllers/expanse_controller.dart';
-
 import '../controllers/amount_controller.dart';
-import '../models/amount_model.dart';
+
 
 
 class Graph extends StatelessWidget {
@@ -23,9 +21,9 @@ class Graph extends StatelessWidget {
 
         appBar: AppBar(
           backgroundColor: Colors.blueGrey,
-          title: Text('Graphs',style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold),),
+          title: const Text('Graphs',style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold),),
           centerTitle: true,
-          bottom: TabBar(
+          bottom: const TabBar(
             labelStyle:TextStyle(fontSize: 17,color: Colors.white) ,
 
             indicatorColor: Colors.white,
@@ -44,7 +42,7 @@ class Graph extends StatelessWidget {
                   child: LineChart(
                       LineChartData(
                           minX: 0,
-                          maxX: 35,
+                          maxX: 30,
                           minY: 0,
                           maxY: 1000,
                           lineBarsData: [
@@ -66,9 +64,9 @@ class Graph extends StatelessWidget {
                       LineChartData(
 
                           minX: 0,
-                          maxX: 35,
+                          maxX: 30,
                           minY: 0,
-                          maxY: 1000,
+                          maxY: 5000,
                           lineBarsData: [
                             LineChartBarData(
                                 isCurved: true,

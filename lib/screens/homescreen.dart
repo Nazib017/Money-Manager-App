@@ -1,16 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:money_manager/controllers/amount_controller.dart';
 import 'package:money_manager/controllers/expanse_controller.dart';
 import 'package:money_manager/models/amount_model.dart';
 import 'package:money_manager/models/expanse_model.dart';
-import 'package:intl/intl.dart';
-import 'package:hive/hive.dart';
+import "package:intl/intl.dart";
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:money_manager/main.dart';
+
 
 
 
@@ -26,6 +23,8 @@ class HomeScreen extends StatelessWidget{
   Box amountBox=Hive.box("CurrentM");
   Box AddMoneyBox=Hive.box("AddMoney");
 
+  HomeScreen({super.key});
+
   MySnackBar(message,context){
     return ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(message))
@@ -36,7 +35,7 @@ class HomeScreen extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         
-        title: Text("Dashboard",style: TextStyle(color: Colors.white,fontSize: 24,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
+        title: const Text("Dashboard",style: TextStyle(color: Colors.white,fontSize: 24,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold),),
         backgroundColor: Colors.blueGrey[400],
         centerTitle: true,
       
@@ -69,31 +68,31 @@ class HomeScreen extends StatelessWidget{
                               builder: (context,amountBox, child) {
                                 return Text(
                                   "Balance: ${controller.current}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold, fontSize: 20),
                                 );
                               }
                           );
                         },
                       ),
-                      SizedBox(height: 60,),
+                      const SizedBox(height: 60,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ElevatedButton(onPressed: (){
                             _showAddDialogue(context);
-                          }, child: Text("Add Money"),
+                          }, child: const Text("Add Money"),
                             style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomRight: Radius.circular(20))),
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomRight: Radius.circular(20))),
                                 backgroundColor: Colors.blueGrey,
                                 foregroundColor: Colors.white
                             ),
                           ),
                           ElevatedButton(onPressed: (){
                             _showDialogue(context);
-                          }, child: Text("Expense"),
+                          }, child: const Text("Expense"),
                             style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomRight: Radius.circular(20))),
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomRight: Radius.circular(20))),
                                 backgroundColor: Colors.blueGrey,
                                 foregroundColor: Colors.white
                             ),
@@ -107,9 +106,9 @@ class HomeScreen extends StatelessWidget{
               ),
             ),
           ),
-          SizedBox(height: 10,),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const SizedBox(height: 10,),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: Text("All History",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,),),
 
           ),
@@ -119,7 +118,7 @@ class HomeScreen extends StatelessWidget{
               child: Column(
 
                 children: [
-                  TabBar(
+                  const TabBar(
                      isScrollable: true,
                     tabs: [
                       Tab(text: 'Expense History'),
@@ -149,16 +148,16 @@ class HomeScreen extends StatelessWidget{
                                   ListTile(
                                     leading: Text(
                                       formattedDate,
-                                      style: TextStyle(fontSize: 14),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
                                     title: Text(
                                       ex.expanse,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18, fontWeight: FontWeight.w400),
                                     ),
                                     trailing: Text(
                                       "-${ex.amount}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
                                           color: Colors.red),
@@ -167,7 +166,7 @@ class HomeScreen extends StatelessWidget{
 
                               },
                               separatorBuilder: (context,index){
-                                return Divider(
+                                return const Divider(
                                   color: Colors.grey,
                                   // indent: 2,
                                   // endIndent: 2,
@@ -195,16 +194,16 @@ class HomeScreen extends StatelessWidget{
                                   ListTile(
                                     leading: Text(
                                       Date,
-                                      style: TextStyle(fontSize: 14),
+                                      style: const TextStyle(fontSize: 14),
                                     ),
                                     title: Text(
                                       Amnt.DescriptionToAdd,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 18, fontWeight: FontWeight.w400),
                                     ),
                                     trailing: Text(
                                       "+${Amnt.amountToAdd}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
                                           color: Colors.green),
@@ -213,7 +212,7 @@ class HomeScreen extends StatelessWidget{
 
                               },
                               separatorBuilder: (context,index){
-                                return Divider(
+                                return const Divider(
                                   color: Colors.grey,
                                   // indent: 2,
                                   // endIndent: 2,
@@ -232,15 +231,15 @@ class HomeScreen extends StatelessWidget{
                             children: [
 
                               ListTile(
-                                leading: Text("Total Amount Added :",style: TextStyle(fontSize: 20,),),
-                                trailing: Text("${AmountController.TotalAddMoney}",style: TextStyle(fontSize: 20,color: Colors.green),),
+                                leading: const Text("Total Amount Added :",style: TextStyle(fontSize: 20,),),
+                                trailing: Text("${AmountController.TotalAddMoney}",style: const TextStyle(fontSize: 20,color: Colors.green),),
                               ),
-                              Divider(height: 15,color: Colors.black,),
+                              const Divider(height: 15,color: Colors.black,),
                               ListTile(
-                                leading: Text("Total Expense :",style: TextStyle(fontSize: 20,),),
-                                trailing: Text("${AmountController.TotalExpense}",style: TextStyle(fontSize: 20,color: Colors.red),),
+                                leading: const Text("Total Expense :",style: TextStyle(fontSize: 20,),),
+                                trailing: Text("${AmountController.TotalExpense}",style: const TextStyle(fontSize: 20,color: Colors.red),),
                               ),
-                              Divider(height: 15,color: Colors.grey,)
+                              const Divider(height: 15,color: Colors.grey,)
                             ],
                           );
                         }
@@ -275,14 +274,14 @@ class HomeScreen extends StatelessWidget{
                     TextField(
                       keyboardType: TextInputType.number,
                       controller: amnclt,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter Expense",
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     TextField(
                       controller: exclt,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Expense Description",
                       ),
                     ),
@@ -297,7 +296,7 @@ class HomeScreen extends StatelessWidget{
                        exclt.clear();
 
                   },
-                    child: Text('Cancel',style: TextStyle(color: Colors.white),),
+                    child: const Text('Cancel',style: TextStyle(color: Colors.white),),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueGrey,
                     ),
@@ -329,7 +328,7 @@ class HomeScreen extends StatelessWidget{
 
                     }
                   },
-                    child: Text('Add',style: TextStyle(color: Colors.white),),
+                    child: const Text('Add',style: TextStyle(color: Colors.white),),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueGrey,
                     ),
@@ -354,14 +353,14 @@ class HomeScreen extends StatelessWidget{
                     TextField(
                       keyboardType: TextInputType.number,
                       controller: addAmount,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Add Amount",
                       ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     TextField(
                       controller: Description,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
 
                         hintText: "Source",
                       ),
@@ -376,7 +375,7 @@ class HomeScreen extends StatelessWidget{
                     addAmount.clear();
                     Description.clear();
                   },
-                    child: Text('Cancel',style: TextStyle(color: Colors.white),),
+                    child: const Text('Cancel',style: TextStyle(color: Colors.white),),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueGrey,
                     ),
@@ -403,7 +402,7 @@ class HomeScreen extends StatelessWidget{
                     }
 
                   },
-                    child: Text('Add',style: TextStyle(color: Colors.white),),
+                    child: const Text('Add',style: TextStyle(color: Colors.white),),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blueGrey,
                     ),
